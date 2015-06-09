@@ -1,0 +1,48 @@
+buildscript {
+    ext {
+        springBootVersion = '1.2.4.RELEASE'
+		groovyVersion = '2.4.3'
+		spockVersion = '1.0-groovy-2.4'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'spring-boot' 
+apply plugin: 'war'
+
+
+war {
+    baseName = 'com.inxmail.clicktracker'
+    version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+
+    compile "org.codehaus.groovy:groovy:${groovyVersion}"
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
+	testCompile "org.spockframework:spock-core:${spockVersion}"
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
