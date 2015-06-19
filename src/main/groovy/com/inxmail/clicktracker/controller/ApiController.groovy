@@ -20,22 +20,20 @@ class ApiController {
     @RequestMapping(value="/api/url", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Void> registerUrl (@RequestBody PostUrl url) {
-
-        return ResponseEntity.status(HttpStatus.CREATED).header("Location","http://localhost:8989/<random-short-code>").build();
+        ResponseEntity.created(new URI("http://localhost:8989/random-short-code")).build()
 
     }
 
     @RequestMapping(value="/api/url", method = RequestMethod.GET)
     @ResponseBody
     public Url getData (@RequestParam(value = "slug") String slug) {
-        Url url = new Url();
-        url.setId(1)
-        url.setLongURL("https://url.to.something/")
-        url.setSlug(slug)
-        url.setCreatedAt(new Date())
+        def url = new Url()
+        url.id = 1
+        url.longURL = "https://url.to.something/"
+        url.slug = slug
+        url.createdAt = new Date()
 
-        return url
+        url
     }
-
 
 }
