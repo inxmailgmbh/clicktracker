@@ -2,7 +2,10 @@ package com.inxmail.clicktracker.controller
 
 import com.inxmail.clicktracker.entity.PostUrl
 import com.inxmail.clicktracker.entity.Url
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
@@ -16,8 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody
 class ApiController {
     @RequestMapping(value="/api/url", method = RequestMethod.POST)
     @ResponseBody
-    public PostUrl registerUrl (@RequestBody PostUrl url) {
-        return url
+    public ResponseEntity<Void> registerUrl (@RequestBody PostUrl url) {
+
+        return ResponseEntity.status(HttpStatus.CREATED).header("Location","http://localhost:8989/<random-short-code>").build();
 
     }
 
@@ -32,4 +36,6 @@ class ApiController {
 
         return url
     }
+
+
 }
