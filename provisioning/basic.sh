@@ -12,10 +12,22 @@ apt-get update
 apt-get install postgresql-9.4 -y
 
 # install jdk
+JDK_DOWNLOAD=/vagrant/provisioning/cache/jdk-8u45-linux-x64.tar.gz
 mkdir -p /vagrant/provisioning/cache/
-wget --no-verbose -O /vagrant/provisioning/cache/jdk-8u45-linux-x64.tar.gz http://build.srv.inxmail.de/resources/jdk/jdk-8u45-linux-x64.tar.gz
+# download only if non-existing
+if [ ! -e ${JDK_DOWNLOAD} ]
+then
+  wget --no-verbose -O ${JDK_DOWNLOAD} http://build.srv.inxmail.de/resources/jdk/jdk-8u45-linux-x64.tar.gz
+fi
 
-tar -xf /vagrant/provisioning/cache/jdk-8u45-linux-x64.tar.gz -C /opt/
+md5sum --check --status /vagrant/provisioning/md5_jdk.txt
+if [ $? -ne 0 ]
+then
+  echo 'Incorrect JDK (md5 checksum failed)'
+  exit 1
+fi
+
+tar -xf ${JDK_DOWNLOAD} -C /opt/
 chown -R root:root /opt/jdk1.8.0_45
 
 ln -s /opt/jdk1.8.0_45 /opt/java
