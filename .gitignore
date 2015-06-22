@@ -1,4 +1,11 @@
 .gradle
 build
+
+# Editor config
 .idea/
 *.iml
+
+# Vagrant box
+provisioning/cache
+.vagrant/
+
