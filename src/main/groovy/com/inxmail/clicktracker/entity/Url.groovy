@@ -2,9 +2,6 @@ package com.inxmail.clicktracker.entity
 
 import com.fasterxml.jackson.annotation.JsonFormat
 
-/**
- * Created by fewi on 18.06.2015.
- */
 class Url {
     long id
     String slug

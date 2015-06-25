@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.ResponseBody
 
-/**
- * Created by fewi on 19.06.2015.
- */
 @Controller
 class RedirectController {
     @RequestMapping(value="/{slug}", method = RequestMethod.GET)
