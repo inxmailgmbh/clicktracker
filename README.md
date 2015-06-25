@@ -16,6 +16,7 @@ Now clone this repository and run the following commands:
     $ git clone https://github.com/inxmailgmbh/clicktracker
     $ cd clicktracker
     $ vagrant up
+    $ vagrant ssh
     $ cd /vagrant
     $ ./gradlew run
 
