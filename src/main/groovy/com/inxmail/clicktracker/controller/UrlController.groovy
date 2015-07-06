@@ -10,8 +10,14 @@ class UrlController {
 
     @RequestMapping(value="/api/url", method = RequestMethod.GET)
     @ResponseBody
-    public String getData () {
-        return "Greetings from Spring Boot!"
+    public Url getData (@RequestParam(value = "slug") String slug) {
+        def url = new Url()
+        url.id = 1
+        url.longUrl = "https://url.to.something/"
+        url.slug = slug
+        url.createdAt = new Date()
+
+        url
     }
 
     @RequestMapping(value="/api/url", method = RequestMethod.POST)

@@ -4,7 +4,8 @@ import com.inxmail.clicktracker.controller.UrlController
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
@@ -31,15 +32,10 @@ public class UrlControllerTest {
         mvc = MockMvcBuilders.standaloneSetup(new UrlController()).build();
     }
 
-    @Test
-    public void urlGet() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/api/url").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
 
-    }
-
+    // POST tests
     @Test
-    public void createUrl() throws Exception{
+    public void createUrlEmpty() throws Exception{
         mvc.perform(MockMvcRequestBuilders.post("/api/url").accept(MediaType.APPLICATION_JSON).content('{}').contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().is(422))
 
@@ -51,5 +47,21 @@ public class UrlControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(header().string("Location","https://url.to.something/"))
 
+    }
+
+
+    // GET tests
+    @Test
+    public void getUrlNoSlug() throws Exception{
+        mvc.perform(MockMvcRequestBuilders.get("/api/url").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(400))
+
+    }
+
+    @Test
+    public void getUrl() throws Exception{
+        mvc.perform(MockMvcRequestBuilders.get("/api/url").accept(MediaType.APPLICATION_JSON).param("slug","abc123"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("slug").value("abc123"))
     }
 }
