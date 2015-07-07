@@ -2,5 +2,8 @@ language: java
 jdk:
   - oraclejdk8
 
+ env:
+  - TERM=dumb
+  
 after_success:
-  - ./gradlew lib:jacocoTestReport lib:coveralls
+  - ./gradlew cobertura coveralls
