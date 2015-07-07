@@ -32,7 +32,7 @@ public class RedirectControllerTest {
     @Test
     public void getRedirect() throws Exception{
         mvc.perform(MockMvcRequestBuilders.get("/abc123").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isFound())
+                .andExpect(status().isMovedPermanently())
                 .andExpect(header().string("Location", "https://www.google.de/?gws_rd=ssl#q=abc123"))
 
     }
