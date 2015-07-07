@@ -1,5 +1,7 @@
 Clicktracker
 ============
+[![Build Status](https://travis-ci.org/inxmailgmbh/clicktracker.svg?branch=master)](https://travis-ci.org/inxmailgmbh/clicktracker)
+[![Coverage Status](https://coveralls.io/repos/inxmailgmbh/clicktracker/badge.svg?branch=master&service=github)](https://coveralls.io/github/inxmailgmbh/clicktracker?branch=master)
 
 Clicktracker is a small click tracking service. You register your URLs with the service and receive a redirect URL. Whenever the redirect URL is visited the service collects some basic usage metrics and redirects the caller to the original URL.
 
