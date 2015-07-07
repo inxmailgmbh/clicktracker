@@ -13,7 +13,7 @@ class RedirectController {
     @RequestMapping(value="/{slug}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Void> redirect (@PathVariable("slug") String slug) {
-        ResponseEntity.status(HttpStatus.FOUND).header("Location","https://www.google.de/?gws_rd=ssl#q="+slug).build()
+        ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).header("Location","https://www.google.de/?gws_rd=ssl#q="+slug).build()
 
     }
 }
