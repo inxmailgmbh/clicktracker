@@ -7,8 +7,8 @@ Vagrant.configure(2) do |config|
     dev.vm.box_url = "http://build.srv.inxmail.de/resources/vagrant/boxes/debian-jessie-64.box"
 
     dev.vm.provision "shell", path: "provisioning/basic.sh"
+    dev.vm.provision "shell", path: "provisioning/postgres_dev_config.sh"
     dev.vm.network "private_network", ip: "192.168.81.11"
-
     dev.vm.provider :virtualbox do |vb|
       vb.memory = 1024
     end

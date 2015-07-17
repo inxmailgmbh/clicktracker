@@ -1,12 +1,16 @@
 package com.inxmail.clicktracker.controller
 
 import com.inxmail.clicktracker.entity.Url
+import com.inxmail.clicktracker.repository.UrlRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 
 @Controller
 class UrlController {
+    @Autowired
+    UrlRepository urlRepository
 
     @RequestMapping(value="/api/url", method = RequestMethod.GET)
     @ResponseBody
@@ -25,8 +29,11 @@ class UrlController {
     public ResponseEntity<Void> registerUrl (@RequestBody Url url) {
         if(url.longUrl == null)
             ResponseEntity.status(422).build()
-        else
+        else{
+            //Test to to save objects in DB
+            //urlRepository.save(url)
             ResponseEntity.created(new URI(url.longUrl)).build()
+        }
 
     }
 }
