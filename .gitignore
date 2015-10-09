@@ -1,9 +1,14 @@
 .gradle
 build
 
-# Editor config
+# Intellij Editor config
 .idea/
 *.iml
+
+# Eclipse
+.settings/
+.classpath
+.project
 
 # Vagrant box
 provisioning/cache

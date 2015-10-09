@@ -20,6 +20,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'war'
 apply plugin: 'jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'eclipse'
 
 
 war {
